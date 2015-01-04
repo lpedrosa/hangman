@@ -1,7 +1,6 @@
-<<<<<<< HEAD
 /bin/
 /build/
-=======
+
 *.class
 
 # Mobile Tools for Java (J2ME)
@@ -14,4 +13,9 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
->>>>>>> 186eaf9207826d3529bd73e838bb0655d165db00
+
+.classpath
+.settings/
+
+
+.gradle/
