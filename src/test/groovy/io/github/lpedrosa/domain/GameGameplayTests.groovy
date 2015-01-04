@@ -16,7 +16,7 @@ class GameGameplayTests extends Specification {
         newGame == game
     }
 
-	def "trying a letter that does not belong to a word"() {
+    def "trying a letter that does not belong to a word"() {
         def game = new Game(0, "Lemons", [:], 3)
         char letter = 'w'
 
@@ -27,9 +27,9 @@ class GameGameplayTests extends Specification {
         newGame.isFinished() == false
         newGame.livesLeft == 2
         newGame.uncoveredByPostion.size() == game.uncoveredByPostion.size()
-	}
+    }
 
-	def "trying a letter that does belong to a word"() {
+    def "trying a letter that does belong to a word"() {
         def game = new Game(0, "Lemons", [:], 3)
         char letter = 'l'
 
@@ -40,7 +40,7 @@ class GameGameplayTests extends Specification {
         newGame.isFinished() == false
         newGame.livesLeft == game.livesLeft
         newGame.uncoveredByPostion.containsKey("l") == true
-	}
+    }
 
     def "trying a letter that does not belong to a word with one life left"() {
         def game = new Game(0, "Lemons", [:], 1)
