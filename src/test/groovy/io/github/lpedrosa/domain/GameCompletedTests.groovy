@@ -1,39 +1,48 @@
 package io.github.lpedrosa.domain;
 
 import static org.junit.Assert.*
+import spock.lang.*
 
-import org.junit.Test
+class GameCompletedTests extends Specification {
 
-class GameCompletedTests {
+    def "isFinished behaviour when no more lives"() {
+        def game = new Game(0, "Lemons", ["l": [1], "e": [2]], 0)
 
-	@Test
-	void isFinishedShouldReturnTrueWhenNoMoreLives() {
-		def noMoreLives = new Game(0, "Lemons", ["l": [1], "e": [2]], 0);
+        when:
+        def res = game.isFinished()
 
-		assertTrue(noMoreLives.isFinished());
-	}
+        then:
+        res == true
+    }
 
-	@Test
-	void isFinishedShouldReturnTrueWhenAllLettersGuessed() {
-		def allLettersGuessed = new Game(0,
-									"Lemons",
-									["l":[1],
-									 "e":[2],
-									 "m":[3],
-									 "o":[4],
-									 "n":[5],
-									 "s":[6]],
-									3);
+    def "isFinished behaviour when all the letters are guessed"() {
+        def game = new Game(0,
+                            "Lemons",
+                            ["l":[1],
+                             "e":[2],
+                             "m":[3],
+                             "o":[4],
+                             "n":[5],
+                             "s":[6]],
+                            3)
 
-		assertTrue(allLettersGuessed.isFinished());
-	}
+        when:
+        def res = game.isFinished()
 
-	@Test
-	void isFinishedShouldReturnFalseWhenUnfinished() {
-		def unfinishedGame = new Game(0, "Lemons", [:], 3);
-		assertFalse(unfinishedGame.isFinished());
+        then:
+        res == true
+    }
 
-		unfinishedGame = new Game(0, "Lemons", ["l": [1], "e": [2]], 3);
-		assertFalse(unfinishedGame.isFinished());
-	}
+    def "isFinished behaviour when game is unfinished"() {
+        def game1 = new Game(0, "Lemons", [:], 3)
+        def game2 = new Game(0, "Lemons", ["l": [1], "e": [2]], 3)
+
+        when:
+        def res1 = game1.isFinished()
+        def res2 = game2.isFinished()
+
+        then:
+        res1 == false
+        res2 == false
+    }
 }
