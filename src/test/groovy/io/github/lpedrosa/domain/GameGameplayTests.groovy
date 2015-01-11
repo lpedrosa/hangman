@@ -1,16 +1,19 @@
 package io.github.lpedrosa.domain;
 
 import static org.junit.Assert.*
+import io.github.lpedrosa.GameManager
 import spock.lang.*
 
 class GameGameplayTests extends Specification {
+
+    GameManager gameManager = new GameManager();
 
     def "trying a letter when the game has finished"() {
         def game = new Game(0, "Lemons", [:], 0)
         char letter = 'w'
 
         when:
-        def newGame = game.tryLetter(letter)
+        def newGame = gameManager.guessLetter(game, letter)
 
         then:
         newGame == game
@@ -21,7 +24,7 @@ class GameGameplayTests extends Specification {
         char letter = 'w'
 
         when:
-        def newGame = game.tryLetter(letter)
+        def newGame = gameManager.guessLetter(game, letter)
 
         then:
         newGame.isFinished() == false
@@ -34,7 +37,7 @@ class GameGameplayTests extends Specification {
         char letter = 'l'
 
         when:
-        def newGame = game.tryLetter(letter)
+        def newGame = gameManager.guessLetter(game, letter)
 
         then:
         newGame.isFinished() == false
@@ -47,7 +50,7 @@ class GameGameplayTests extends Specification {
         char letter = 'w'
 
         when:
-        def newGame = game.tryLetter(letter)
+        def newGame = gameManager.guessLetter(game, letter)
 
         then:
         newGame.isFinished() == true
@@ -67,7 +70,7 @@ class GameGameplayTests extends Specification {
         char letter = 'l'
 
         when:
-        def newGame = game.tryLetter(letter)
+        def newGame = gameManager.guessLetter(game, letter)
 
         then:
         newGame.isFinished() == true

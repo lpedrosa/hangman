@@ -1,8 +1,6 @@
 package io.github.lpedrosa.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,42 +19,6 @@ public final class Game {
         this.currentWord = currentWord;
         this.uncoveredByPostion = uncoveredByPostion;
         this.livesLeft = livesLeft;
-    }
-
-    public Game tryLetter(final char letter) {
-        if (isFinished())
-            return this;
-
-        final List<Integer> letterPositions = allIndexesForLetter(letter);
-
-        if (letterPositions.isEmpty())
-            return new Game(this.gameId,
-                            this.currentWord,
-                            this.uncoveredByPostion,
-                            this.livesLeft-1);
-
-        final Map<String, List<Integer>> newUncoveredByPosition = new HashMap<>(this.uncoveredByPostion);
-        newUncoveredByPosition.put(String.valueOf(letter), letterPositions);
-
-        return new Game(this.gameId,
-                        this.currentWord,
-                        newUncoveredByPosition,
-                        this.livesLeft);
-    }
-
-    private List<Integer> allIndexesForLetter(final char letter) {
-        final List<Integer> letterPositions = new ArrayList<>();
-
-        final String currentWordLower = this.currentWord.toLowerCase();
-
-        int index = -1;
-        do {
-            index = currentWordLower.indexOf(letter, index+1);
-            if (index != -1)
-                letterPositions.add(index);
-        } while(index != -1);
-
-        return letterPositions;
     }
 
     public boolean isFinished() {
