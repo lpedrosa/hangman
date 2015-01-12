@@ -9,6 +9,22 @@ import java.util.Map;
 
 public final class GameManager {
 
+    private static final int DEFAULT_NUM_LIVES = 6;
+
+    private final WordManager wordManager;
+
+    public GameManager(final WordManager wordManager) {
+        this.wordManager = wordManager;
+    }
+
+    public Game createGame() {
+        final String randomWord = this.wordManager.fetchRandomWord();
+        final Game game = Game.newGameFor(randomWord, DEFAULT_NUM_LIVES);
+
+        // TODO store game
+        return game;
+    }
+
     public Game guessLetter(final Game game, final char letter) {
         if (game.isFinished())
             return game;
@@ -46,6 +62,8 @@ public final class GameManager {
 
         return letterPositions;
     }
+
+    // createGame :: Unit -> Game, GameManagerException
     // saveState :: Game -> Game, SaveStateException
     // loadState :: GameId -> Game, LoadStateException
     // listGames :: () -> Stream<Game>

@@ -1,17 +1,23 @@
 package io.github.lpedrosa.domain;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public final class Game {
 
-    private final long gameId;
+    private final String gameId;
     private final String currentWord;
     private final Map<String, List<Integer>> uncoveredByPostion;
     private final int livesLeft;
 
-    public Game(final long gameId,
+    public static Game newGameFor(final String word, final int lives) {
+        return new Game(UUID.randomUUID().toString(), word, new HashMap<String, List<Integer>>(), lives);
+    }
+
+    public Game(final String gameId,
                 final String currentWord,
                 final Map<String, List<Integer>> uncoveredByPostion,
                 final int livesLeft) {
@@ -27,7 +33,7 @@ public final class Game {
         return noLivesLeft || guessedAllLetters;
     }
 
-    public long getGameId() {
+    public String getGameId() {
         return this.gameId;
     }
 

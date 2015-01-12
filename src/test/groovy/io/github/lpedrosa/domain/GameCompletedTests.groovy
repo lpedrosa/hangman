@@ -6,7 +6,7 @@ import spock.lang.*
 class GameCompletedTests extends Specification {
 
     def "isFinished behaviour when no more lives"() {
-        def game = new Game(0, "Lemons", ["l": [1], "e": [2]], 0)
+        def game = new Game("0", "Lemons", ["l": [1], "e": [2]], 0)
 
         when:
         def res = game.isFinished()
@@ -16,7 +16,7 @@ class GameCompletedTests extends Specification {
     }
 
     def "isFinished behaviour when all the letters are guessed"() {
-        def game = new Game(0,
+        def game = new Game("0",
                             "Lemons",
                             ["l":[1],
                              "e":[2],
@@ -34,8 +34,8 @@ class GameCompletedTests extends Specification {
     }
 
     def "isFinished behaviour when game is unfinished"() {
-        def game1 = new Game(0, "Lemons", [:], 3)
-        def game2 = new Game(0, "Lemons", ["l": [1], "e": [2]], 3)
+        def game1 = new Game("0", "Lemons", [:], 3)
+        def game2 = new Game("0", "Lemons", ["l": [1], "e": [2]], 3)
 
         when:
         def res1 = game1.isFinished()

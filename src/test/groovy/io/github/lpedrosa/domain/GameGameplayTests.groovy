@@ -9,7 +9,7 @@ class GameGameplayTests extends Specification {
     GameManager gameManager = new GameManager();
 
     def "trying a letter when the game has finished"() {
-        def game = new Game(0, "Lemons", [:], 0)
+        def game = new Game("0", "Lemons", [:], 0)
         char letter = 'w'
 
         when:
@@ -20,7 +20,7 @@ class GameGameplayTests extends Specification {
     }
 
     def "trying a letter that does not belong to a word"() {
-        def game = new Game(0, "Lemons", [:], 3)
+        def game = new Game("0", "Lemons", [:], 3)
         char letter = 'w'
 
         when:
@@ -33,7 +33,7 @@ class GameGameplayTests extends Specification {
     }
 
     def "trying a letter that does belong to a word"() {
-        def game = new Game(0, "Lemons", [:], 3)
+        def game = new Game("0", "Lemons", [:], 3)
         char letter = 'l'
 
         when:
@@ -46,7 +46,7 @@ class GameGameplayTests extends Specification {
     }
 
     def "trying a letter that does not belong to a word with one life left"() {
-        def game = new Game(0, "Lemons", [:], 1)
+        def game = new Game("0", "Lemons", [:], 1)
         char letter = 'w'
 
         when:
@@ -59,7 +59,7 @@ class GameGameplayTests extends Specification {
     }
 
     def "trying a letter the last missing letter"() {
-        def game = new Game(0,
+        def game = new Game("0",
                             "Lemons",
                             ["e":[2],
                              "m":[3],
