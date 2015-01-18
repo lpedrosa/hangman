@@ -6,16 +6,16 @@ import io.github.lpedrosa.domain.Game;
 public interface GameStorageService {
 
     /**
-     * Stores the given game state. It returns the most up to
+     * <p>Stores the given game state. It returns the most up to
      * date state. This means that it will try to merge the given
      * game state with an already existing one.
      *
-     * When trying to merge with an existing state, this may generate
+     * <p>When trying to merge with an existing state, this may generate
      * an illegal result (e.g. game with negative lives).
      * When this merge operation leads to an illegal state, this method
      * will throw a {@link GameStorageException}.
      *
-     * It may also throw a {@link ServiceException} if the underlying
+     * <p>It may also throw a {@link ServiceException} if the underlying
      * persistence unit fails to store the game state (e.g. network timeout)
      *
      * @param game the game to store
